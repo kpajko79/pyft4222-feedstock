@@ -1,0 +1,40 @@
+{% set name = "pyft4222" %}
+{% set version = "0.2.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyft4222-{{ version }}.tar.gz
+  sha256: fbf2343d1a99a233b16f1f361d7e93c7bdf362cccaa5316b75872320b6a42364
+
+build:
+  skip: true  # [py<38]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python
+    - setuptools >=42
+    - wheel
+    - pip
+  run:
+    - python
+    - importlib-resources  # [py<39]
+    - koda >=0.10.2
+
+test:
+  imports:
+    - pyft4222
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/lavovaLampa/pyft4222
+  summary: A python wrapper for libft4222 library
+  license: MIT
+  license_file: LICENSE

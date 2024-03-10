@@ -1,0 +1,5 @@
+channel_sources:
+  - ryanvolz, conda-forge, defaults
+
+channel_targets:
+  - kpajko79 main
